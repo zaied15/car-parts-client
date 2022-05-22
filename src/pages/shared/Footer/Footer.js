@@ -16,17 +16,17 @@ const Footer = () => {
         <p>
           <span className="text-2xl">
             <Link to="#">
-              <i class="fa-brands fa-facebook-square text-white"></i>
+              <i className="fa-brands fa-facebook-square text-white"></i>
             </Link>
           </span>
           <span className="mx-2 text-2xl text-white">
             <Link to="#">
-              <i class="fa-brands fa-twitter"></i>
+              <i className="fa-brands fa-twitter"></i>
             </Link>
           </span>
           <span className="text-2xl">
             <Link to="#">
-              <i class="fa-brands fa-instagram-square text-white"></i>
+              <i className="fa-brands fa-instagram-square text-white"></i>
             </Link>
           </span>
         </p>
