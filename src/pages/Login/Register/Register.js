@@ -7,25 +7,21 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import Loading from "../../shared/Loading/Loading";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
   const [displayName, setDisplayName] = useState("");
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile, updating, upError] = useUpdateProfile(auth);
   const navigate = useNavigate();
-  if (error || upError) {
-    return (
-      <div>
-        <p>Error: {error.message}</p>
-      </div>
-    );
-  }
+
   if (loading || updating) {
     return <Loading></Loading>;
   }
@@ -36,8 +32,14 @@ const Register = () => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
-    await createUserWithEmailAndPassword(email, password);
-    await updateProfile({ displayName: name });
+    const confirmPassword = data.confirmPassword;
+    if (confirmPassword === password) {
+      await createUserWithEmailAndPassword(email, password);
+      await updateProfile({ displayName: name });
+    } else {
+      reset();
+      error.message = "Password does not matched. Please try again.";
+    }
   };
   return (
     <section className="my-20 height-adjust">
@@ -49,8 +51,10 @@ const Register = () => {
           className="input input-bordered input-error w-full max-w-lg mt-5"
           {...register("name", { required: true, maxLength: 30 })}
         />
-        <p className="text-primary">
+        <p className="text-error font-bold">
           {errors.name && <span>Name is required</span>}
+        </p>
+        <p className="text-error font-bold">
           {errors.maxLength && <span>Name should between 30 characters</span>}
         </p>
 
@@ -66,7 +70,7 @@ const Register = () => {
             }
           )}
         />
-        <p className="text-primary">
+        <p className="text-error font-bold">
           {errors.email && <span>Email is required</span>}
         </p>
 
@@ -76,9 +80,19 @@ const Register = () => {
           className="input input-bordered input-error w-full max-w-lg"
           {...register("password", { required: true })}
         />
-        <p className="text-primary">
-          {errors.companyName && <span>Company name is required</span>}
+        <p className="text-error font-bold">
+          {errors.Password && <span>Password is required</span>}
         </p>
+        <input
+          type="password"
+          placeholder="Confirm password"
+          className="input input-bordered input-error w-full max-w-lg mt-5"
+          {...register("confirmPassword", { required: true })}
+        />
+        <p className="text-error font-bold">
+          {errors.confirmPassword && <span>Confirm Password is required</span>}
+        </p>
+        <p className="text-error font-bold">{error ? error.message : ""}</p>
         <input
           type="submit"
           value="Register"
@@ -93,14 +107,7 @@ const Register = () => {
       </p>
       <div className="flex flex-col w-1/2 border-opacity-50 mx-auto">
         <div className="divider">OR</div>
-        <div className="grid h-20 rounded-box place-items-center">
-          <button className="btn btn-outline btn-error bg-base-100 w-96">
-            <span className="border p-2 rounded">
-              <i className="fa-brands fa-google"></i>
-            </span>
-            <span className="ml-3"> Google</span>
-          </button>
-        </div>
+        <SocialLogin></SocialLogin>
       </div>
     </section>
   );
