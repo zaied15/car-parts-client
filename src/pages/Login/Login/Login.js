@@ -1,7 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import ".//Login.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import "./Login.css";
+import auth from "../../../firebase.init";
+import Loading from "../../shared/Loading/Loading";
 
 const Login = () => {
   const {
@@ -9,7 +12,28 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
+
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
+  if (loading) {
+    return <Loading></Loading>;
+  }
+  if (user) {
+    navigate("/");
+  }
+  const onSubmit = (data) => {
+    const email = data.email;
+    const password = data.password;
+    signInWithEmailAndPassword(email, password);
+  };
   return (
     <section className="my-20 height-adjust">
       <h3 className="text-2xl font-bold">Please Login</h3>
@@ -34,7 +58,7 @@ const Login = () => {
           type="password"
           placeholder="Password"
           className="input input-bordered input-error w-full max-w-lg"
-          {...register("companyName", { required: true })}
+          {...register("password", { required: true })}
         />
         <p className="text-primary">
           {errors.companyName && <span>Company name is required</span>}

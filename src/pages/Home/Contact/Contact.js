@@ -22,14 +22,14 @@ const Contact = () => {
             <div>
               <div>
                 <h4 className="text-xl font-bold">
-                  <i class="fa-solid fa-phone-volume"></i> Call Us
+                  <i className="fa-solid fa-phone-volume"></i> Call Us
                 </h4>
                 <p>+7 100 34 7892 34</p>
                 <p>+7 100 54 3491 44</p>
               </div>
               <div className="mt-20">
                 <h4 className="text-xl font-bold">
-                  <i class="fa-solid fa-location-dot"></i> Address
+                  <i className="fa-solid fa-location-dot"></i> Address
                 </h4>
                 <p>United States of America</p>
                 <p>New York, NY 10002</p>

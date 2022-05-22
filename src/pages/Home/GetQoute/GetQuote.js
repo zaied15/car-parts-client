@@ -27,7 +27,7 @@ const GetQuote = () => {
             <input
               type="email"
               placeholder="Your Email"
-              class="input input-bordered input-error w-full max-w-lg my-5"
+              className="input input-bordered input-error w-full max-w-lg my-5"
               {...register(
                 "email",
                 { required: true },
@@ -44,7 +44,7 @@ const GetQuote = () => {
             <input
               type="text"
               placeholder="Company Name"
-              class="input input-bordered input-error w-full max-w-lg"
+              className="input input-bordered input-error w-full max-w-lg"
               {...register("companyName", { required: true })}
             />
             <p className="text-primary">
@@ -52,7 +52,7 @@ const GetQuote = () => {
             </p>
 
             <textarea
-              class="textarea textarea-error w-full max-w-lg my-5"
+              className="textarea textarea-error w-full max-w-lg my-5"
               rows="5"
               placeholder="Write Details"
               {...register("message", { required: true })}

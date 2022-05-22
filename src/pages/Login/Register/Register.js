@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import Loading from "../../shared/Loading/Loading";
 
 const Register = () => {
   const {
@@ -8,7 +14,31 @@ const Register = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const [displayName, setDisplayName] = useState("");
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const [updateProfile, updating, upError] = useUpdateProfile(auth);
+  const navigate = useNavigate();
+  if (error || upError) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
+  if (loading || updating) {
+    return <Loading></Loading>;
+  }
+  if (user) {
+    navigate("/");
+  }
+  const onSubmit = async (data) => {
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name });
+  };
   return (
     <section className="my-20 height-adjust">
       <h3 className="text-2xl font-bold">Please Register</h3>
@@ -44,7 +74,7 @@ const Register = () => {
           type="password"
           placeholder="Password"
           className="input input-bordered input-error w-full max-w-lg"
-          {...register("companyName", { required: true })}
+          {...register("password", { required: true })}
         />
         <p className="text-primary">
           {errors.companyName && <span>Company name is required</span>}

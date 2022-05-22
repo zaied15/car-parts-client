@@ -1,8 +1,21 @@
+import { signOut } from "firebase/auth";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import auth from "../../../firebase.init";
 import logo from "../../../images/logo.png";
+import Loading from "../Loading/Loading";
 
 const Navbar = () => {
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+  if (loading) {
+    return <Loading></Loading>;
+  }
+  const logout = () => {
+    signOut(auth);
+    navigate("/");
+  };
   const menuItem = (
     <>
       <li>
@@ -11,9 +24,17 @@ const Navbar = () => {
       <li>
         <Link to="/blog">Blog</Link>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
+      {!user ? (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      ) : (
+        <li>
+          <button onClick={logout} className="btn">
+            Logout
+          </button>
+        </li>
+      )}
     </>
   );
   return (
