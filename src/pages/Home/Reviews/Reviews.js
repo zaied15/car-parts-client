@@ -11,13 +11,16 @@ const Reviews = () => {
           <div className="card w-full bg-base-100">
             <figure className="px-10 pt-10">
               <div className="avatar">
-                <div className="w-48 mask mask-hexagon">
+                <div className="w-36 mask mask-hexagon">
                   <img src="https://api.lorem.space/image/face?hash=55350" />
                 </div>
               </div>
             </figure>
             <div className="card-body items-center text-center">
-              <h2 className="card-title">Shoes!</h2>
+              <h2 className="card-title">Tom Cruise</h2>
+              <p>
+                <span className="font-bold">Ratings: </span>5.0
+              </p>
               <p>If a dog chews shoes whose shoes does he choose?</p>
             </div>
           </div>
@@ -26,13 +29,16 @@ const Reviews = () => {
           <div className="card w-full bg-base-100">
             <figure className="px-10 pt-10">
               <div className="avatar">
-                <div className="w-48 mask mask-hexagon">
+                <div className="w-36 mask mask-hexagon">
                   <img src="https://api.lorem.space/image/face?hash=55350" />
                 </div>
               </div>
             </figure>
             <div className="card-body items-center text-center">
-              <h2 className="card-title">Shoes!</h2>
+              <h2 className="card-title">De Caprio</h2>
+              <p>
+                <span className="font-bold">Ratings: </span>5.0
+              </p>
               <p>If a dog chews shoes whose shoes does he choose?</p>
             </div>
           </div>
