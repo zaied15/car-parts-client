@@ -8,7 +8,7 @@ import Navbar from "./pages/shared/Navbar/Navbar";
 
 function App() {
   return (
-    <div className="App max-w-screen-xl mx-auto">
+    <div className="App container">
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
