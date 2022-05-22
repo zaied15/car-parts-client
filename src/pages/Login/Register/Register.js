@@ -1,9 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import ".//Login.css";
 
-const Login = () => {
+const Register = () => {
   const {
     register,
     formState: { errors },
@@ -12,11 +11,22 @@ const Login = () => {
   const onSubmit = (data) => console.log(data);
   return (
     <section className="my-20 height-adjust">
-      <h3 className="text-2xl font-bold">Please Login</h3>
+      <h3 className="text-2xl font-bold">Please Register</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
+          type="text"
+          placeholder="Your name"
+          className="input input-bordered input-error w-full max-w-lg mt-5"
+          {...register("name", { required: true, maxLength: 30 })}
+        />
+        <p className="text-primary">
+          {errors.name && <span>Name is required</span>}
+          {errors.maxLength && <span>Name should between 30 characters</span>}
+        </p>
+
+        <input
           type="email"
-          placeholder="Your Email"
+          placeholder="Your email"
           className="input input-bordered input-error w-full max-w-lg my-5"
           {...register(
             "email",
@@ -41,14 +51,14 @@ const Login = () => {
         </p>
         <input
           type="submit"
-          value="Login"
+          value="Register"
           className="btn btn-primary w-full max-w-lg mt-10"
         />
       </form>
       <p className="mt-5 text-lg">
-        Are you new to here?{" "}
-        <Link to="/register" className="text-primary">
-          Please Register
+        Already have an account?{" "}
+        <Link to="/login" className="text-primary">
+          Login here
         </Link>
       </p>
       <div className="flex flex-col w-1/2 border-opacity-50 mx-auto">
@@ -66,4 +76,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
