@@ -2,7 +2,7 @@
   {
     "_id": 1,
     "name": "C.B.S. Brake disc 50",
-    "price": 89,
+    "price": 500,
     "minOrder": 1500,
     "quantity": 300000,
     "description": "Front axle vented, for for MERCEDES-BENZ M-CLASS (W164) ML 280 CDI 4-matic (164.120). Metal quality is above standard level.",
@@ -11,7 +11,7 @@
   {
     "_id": 2,
     "name": "OBI Springs 53",
-    "price": 40,
+    "price": 420,
     "minOrder": 1200,
     "quantity": 150000,
     "description": "Rear axle lucas w/o accessories, for AUDI A3 (8L1) 1.6 101 HP. Super suspension and long lasting. Top class quality has ensured.",
@@ -20,7 +20,7 @@
   {
     "_id": 3,
     "name": "Elysium Oil filter 52",
-    "price": 120,
+    "price": 380,
     "minOrder": 1000,
     "quantity": 100000,
     "description": "Filter insert, for BMW X5 (E53) 3.0 228 HP. Height is 104mm and weight is 0.0074kg. Super quality plastic body and easy to use.",

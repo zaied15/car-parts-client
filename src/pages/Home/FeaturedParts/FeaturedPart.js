@@ -7,7 +7,7 @@ const FeaturedPart = ({ part }) => {
       <figure className="relative">
         <img src={img} alt="Shoes" className="border-b" />
         <p className="bg-primary text-white absolute bottom-0 right-0 text-xl py-2 px-4 rounded">
-          Price: ${price}
+          ${price} / <span className="text-sm">{minOrder}pcs</span>
         </p>
       </figure>
       <div className="card-body">
@@ -18,7 +18,7 @@ const FeaturedPart = ({ part }) => {
             {minOrder}
           </p>
           <p className="flex-grow-0">
-            <span className="font-bold">Quantity: </span>
+            <span className="font-bold">Available quantity: </span>
             {quantity}
           </p>
         </div>

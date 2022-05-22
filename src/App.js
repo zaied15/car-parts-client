@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home/Home";
 import Navbar from "./pages/shared/Navbar/Navbar";
+import Footer from "./pages/shared/Footer/Footer";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
       </Routes>
+      <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div>
   );
