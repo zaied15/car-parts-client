@@ -5,6 +5,7 @@ import {
   useAuthState,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
+import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import "./Login.css";
 import auth from "../../../firebase.init";
 import Loading from "../../shared/Loading/Loading";
@@ -13,17 +14,19 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 const Login = () => {
   const {
     register,
-    formState: { errors },
     handleSubmit,
+    formState: { errors },
   } = useForm();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
   const [aUser] = useAuthState(auth);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  if (loading) {
+  if (loading || sending) {
     return <Loading></Loading>;
   }
 
@@ -73,6 +76,12 @@ const Login = () => {
           className="btn btn-primary w-full max-w-lg mt-10"
         />
       </form>
+      <p className="mt-5 text-lg">
+        Forgot your password?
+        <Link to="/resetPassword" className="text-primary ml-1">
+          Reset Password
+        </Link>
+      </p>
       <p className="mt-5 text-lg">
         Are you new to here?{" "}
         <Link to="/register" className="text-primary">

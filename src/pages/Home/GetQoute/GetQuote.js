@@ -7,8 +7,10 @@ const GetQuote = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = (data, e) => {
+    e.target.reset();
     toast.success("Submitted successfully");
   };
   return (

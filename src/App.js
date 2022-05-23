@@ -9,6 +9,7 @@ import Login from "./pages/Login/Login/Login";
 import Register from "./pages/Login/Register/Register";
 import RequireAuth from "./pages/Login/RequireAuth/RequireAuth";
 import Blog from "./pages/Blog/Blog";
+import ResetPassword from "./pages/Login/ResetPassword/ResetPassword";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
         ></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="register" element={<Register></Register>}></Route>
+        <Route
+          path="/resetPassword"
+          element={<ResetPassword></ResetPassword>}
+        ></Route>
       </Routes>
       <Footer></Footer>
       <ToastContainer></ToastContainer>

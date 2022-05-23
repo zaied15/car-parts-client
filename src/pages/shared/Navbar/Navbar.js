@@ -35,6 +35,11 @@ const Navbar = () => {
           </button>
         </li>
       )}
+      {!user && (
+        <li>
+          <Link to="/register">Register</Link>
+        </li>
+      )}
     </>
   );
   return (
