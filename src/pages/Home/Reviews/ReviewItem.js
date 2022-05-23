@@ -1,15 +1,19 @@
 import React from "react";
 
-const ReviewItem = ({ reviewItem }) => {
+const ReviewItem = ({ reviewItem, index }) => {
   const { name, review, rating } = reviewItem;
   return (
-    <div className="card card-compact w-full shadow-xl border bg-white">
-      <div className="card-body">
-        <h2 className="text-2xl font-bold text-center">{name}</h2>
-        <p>
-          <span className="font-bold">Rating: {rating}</span>
-        </p>
-        <p className="my-3 overflow-hidden">{review}</p>
+    <div id={`item${index + 1}`} className="carousel-item w-full">
+      <div className="hero h-48 bg-base-100">
+        <div className="hero-content text-center">
+          <div>
+            <h1 className="text-5xl font-bold">{name}</h1>
+            <p>{review}</p>
+            <p>
+              <span className="font-bold">Rating: {rating}</span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

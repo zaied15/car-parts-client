@@ -23,7 +23,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/addReview">Add Review</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
       <li>
         <Link to="/blog">Blog</Link>
@@ -77,6 +77,12 @@ const Navbar = () => {
           <Link to="/" className="btn btn-ghost normal-case text-xl">
             <img src={logo} alt="Carros Logo" />
           </Link>
+          <label
+            htmlFor="my-drawer-2"
+            className="btn btn-accent drawer-button lg:hidden"
+          >
+            Go Dashboard
+          </label>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal p-0">{menuItem}</ul>

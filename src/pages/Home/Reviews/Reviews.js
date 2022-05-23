@@ -22,10 +22,25 @@ const Reviews = () => {
       <h3 className="text-4xl font-bold text-primary text-center my-10">
         What Our Clients Says
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 h-48">
-        {reverseReviews.slice(0, 3).map((reviewItem) => (
-          <ReviewItem key={reviewItem._id} reviewItem={reviewItem}></ReviewItem>
+      <div className="carousel w-full">
+        {reverseReviews.slice(0, 3).map((reviewItem, index) => (
+          <ReviewItem
+            key={reviewItem._id}
+            reviewItem={reviewItem}
+            index={index}
+          ></ReviewItem>
         ))}
+      </div>
+      <div className="flex justify-center w-full py-2 gap-2">
+        <a href="#item1" className="btn btn-xs">
+          1
+        </a>
+        <a href="#item2" className="btn btn-xs">
+          2
+        </a>
+        <a href="#item3" className="btn btn-xs">
+          3
+        </a>
       </div>
     </section>
   );

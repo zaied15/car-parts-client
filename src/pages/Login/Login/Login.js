@@ -1,11 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  useAuthState,
-  useSignInWithEmailAndPassword,
-} from "react-firebase-hooks/auth";
-import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import "./Login.css";
 import auth from "../../../firebase.init";
 import Loading from "../../shared/Loading/Loading";
