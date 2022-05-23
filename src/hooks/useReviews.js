@@ -6,5 +6,8 @@ const useReviews = () => {
     isLoading,
     error,
     refetch,
-  } = useQuery("review", () => fetch("http://localhost:5000/review"));
+  } = useQuery("review", () =>
+    fetch("http://localhost:5000/review").then((res) => res.json)
+  );
 };
+export default useReviews;
