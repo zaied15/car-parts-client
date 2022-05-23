@@ -8,6 +8,7 @@ import {
 import auth from "../../../firebase.init";
 import Loading from "../../shared/Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import useToken from "../../../hooks/useToken";
 
 const Register = () => {
   const {
@@ -21,11 +22,12 @@ const Register = () => {
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile, updating, upError] = useUpdateProfile(auth);
   const navigate = useNavigate();
+  const [token] = useToken(user);
 
   if (loading || updating) {
     return <Loading></Loading>;
   }
-  if (user) {
+  if (token) {
     navigate("/");
   }
   const onSubmit = async (data) => {
@@ -81,7 +83,7 @@ const Register = () => {
           {...register("password", { required: true })}
         />
         <p className="text-error font-bold">
-          {errors.Password && <span>Password is required</span>}
+          {errors.password && <span>Password is required</span>}
         </p>
         <input
           type="password"

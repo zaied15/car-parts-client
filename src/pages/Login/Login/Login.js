@@ -10,6 +10,7 @@ import "./Login.css";
 import auth from "../../../firebase.init";
 import Loading from "../../shared/Loading/Loading";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import useToken from "../../../hooks/useToken";
 
 const Login = () => {
   const {
@@ -19,18 +20,16 @@ const Login = () => {
   } = useForm();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending, resetError] =
-    useSendPasswordResetEmail(auth);
-  const [aUser] = useAuthState(auth);
   const navigate = useNavigate();
   const location = useLocation();
+  const [token] = useToken(user);
   const from = location.state?.from?.pathname || "/";
 
-  if (loading || sending) {
+  if (loading) {
     return <Loading></Loading>;
   }
 
-  if (user || aUser) {
+  if (token) {
     navigate(from, { replace: true });
   }
 

@@ -14,12 +14,16 @@ const Navbar = () => {
   }
   const logout = () => {
     signOut(auth);
+    localStorage.removeItem("accessToken");
     navigate("/");
   };
   const menuItem = (
     <>
       <li>
         <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/addReview">Add Review</Link>
       </li>
       <li>
         <Link to="/blog">Blog</Link>

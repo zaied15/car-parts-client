@@ -10,6 +10,7 @@ import Register from "./pages/Login/Register/Register";
 import RequireAuth from "./pages/Login/RequireAuth/RequireAuth";
 import Blog from "./pages/Blog/Blog";
 import ResetPassword from "./pages/Login/ResetPassword/ResetPassword";
+import AddReview from "./pages/AddReview/AddReview";
 
 function App() {
   return (
@@ -17,14 +18,8 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
-        <Route
-          path="blog"
-          element={
-            <RequireAuth>
-              <Blog></Blog>
-            </RequireAuth>
-          }
-        ></Route>
+        <Route path="blog" element={<Blog></Blog>}></Route>
+        <Route path="addReview" element={<AddReview></AddReview>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="register" element={<Register></Register>}></Route>
         <Route

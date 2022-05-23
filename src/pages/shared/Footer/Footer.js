@@ -5,7 +5,7 @@ const Footer = () => {
   const date = new Date();
   const getYear = date.getFullYear();
   return (
-    <footer className="flex justify-around bg-slate-800 mt-10 items-center py-8">
+    <footer className="lg:flex lg:justify-around bg-slate-800 mt-10 lg:items-center py-8">
       <div>
         <p className="text-white">
           &copy; {getYear} Pitstop, Car Parts Manufacturing Company. Developed
