@@ -4,7 +4,7 @@ const MyOrder = ({ order, index }) => {
   const { partsName, quantity, price } = order;
   return (
     <tr>
-      <th>{index + 1}</th>
+      <th>{index + 1}.</th>
       <td>{partsName}</td>
       <td>{quantity}</td>
       <td>{price}</td>

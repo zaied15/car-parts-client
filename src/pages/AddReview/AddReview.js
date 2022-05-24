@@ -1,9 +1,7 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
-import Loading from "../shared/Loading/Loading";
 
 const AddReview = () => {
   const [user] = useAuthState(auth);
@@ -33,7 +31,7 @@ const AddReview = () => {
       });
   };
   return (
-    <section className="height-adjust mt-28">
+    <section className="height-adjust">
       <h2 className="text-2xl text-primary font-bold mb-3">
         Please Add Your Review
       </h2>
