@@ -1,24 +1,15 @@
 import React from "react";
 import { useQuery } from "react-query";
-import Loading from "../../shared/Loading/Loading";
-import Order from "./Order";
+import User from "./User";
 
-const AllOrders = () => {
-  const {
-    data: orders,
-    isLoading,
-    refetch,
-  } = useQuery("orders", () =>
-    fetch(`http://localhost:5000/order`, {
-      method: "GET",
+const Users = () => {
+  const { data: users, isLoading } = useQuery("users", () =>
+    fetch("http://localhost:5000/users", {
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     }).then((res) => res.json())
   );
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
   return (
     <section>
       <h3 className="text-2xl font-bold">My Order List</h3>
@@ -26,17 +17,16 @@ const AllOrders = () => {
         <table className="table table-zebra w-full">
           <thead>
             <tr>
-              <th>Sl.</th>
+              <th>SL.</th>
               <th>User Name</th>
-              <th>Parts Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
+              <th>Email</th>
+              <th>Role</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {orders.map((order, index) => (
-              <Order key={order._id} order={order} index={index}></Order>
+            {users.map((user, index) => (
+              <User key={user._id} user={user} index={index}></User>
             ))}
           </tbody>
         </table>
@@ -45,4 +35,4 @@ const AllOrders = () => {
   );
 };
 
-export default AllOrders;
+export default Users;
