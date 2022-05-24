@@ -20,6 +20,7 @@ import AddProduct from "./pages/Dashboard/AddProduct/AddProduct";
 import ManageProducts from "./pages/Dashboard/ManageProducts/ManageProducts";
 import RequireAdmin from "./pages/Login/RequireAuth/RequireAdmin";
 import Users from "./pages/Dashboard/Users/Users";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -75,6 +76,7 @@ function App() {
           path="/resetPassword"
           element={<ResetPassword></ResetPassword>}
         ></Route>
+        <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
       <Footer></Footer>
       <ToastContainer></ToastContainer>
