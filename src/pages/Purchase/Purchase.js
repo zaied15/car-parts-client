@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import useSingleParts from "../../hooks/useSingleParts";
@@ -11,17 +11,17 @@ const Purchase = () => {
   const [user] = useAuthState(auth);
   const { id } = useParams();
   const { singleParts, isLoading } = useSingleParts(id);
-  const [quantity, setQuantity] = useState(
-    singleParts?.minOrder ? singleParts?.minOrder : localStorage.getItem(id)
-  );
+  const [quantity, setQuantity] = useState(localStorage.getItem(id));
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <Loading></Loading>;
   }
   const orderNow = (e) => {
     e.preventDefault();
-    const name = user?.name;
+    const name = user?.displayName;
+    const partsName = singleParts.name;
     const email = user?.email;
     const newQuantity = quantity;
     const phone = e.target.phone.value;
@@ -31,11 +31,21 @@ const Purchase = () => {
       name,
       email,
       quantity: newQuantity,
+      price: quantity * singleParts.price,
+      partsName,
       phone,
       address,
       country,
     };
-    axios.post("http://localhost:5000/order", orderDetails).then((res) => {
+    axios({
+      method: "POST",
+      url: "http://localhost:5000/order",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      data: orderDetails,
+    }).then((res) => {
+      navigate("/dashboard/myOrders");
       toast.success("Order placed successfully");
     });
   };

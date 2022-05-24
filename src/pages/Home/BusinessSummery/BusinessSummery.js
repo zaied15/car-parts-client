@@ -4,9 +4,9 @@ import Loading from "../../shared/Loading/Loading";
 import BusinessInfo from "./BusinessInfo";
 
 const BusinessSummery = () => {
-  const [parts, partsLoading] = useParts();
+  const { parts, isLoading } = useParts();
 
-  if (partsLoading) {
+  if (isLoading) {
     return <Loading></Loading>;
   }
 

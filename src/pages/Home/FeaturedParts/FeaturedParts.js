@@ -1,9 +1,13 @@
 import React from "react";
 import useParts from "../../../hooks/useParts";
+import Loading from "../../shared/Loading/Loading";
 import FeaturedPart from "./FeaturedPart";
 
 const FeaturedParts = () => {
-  const [parts] = useParts();
+  const { parts, isLoading } = useParts();
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="mt-10">
       <h3 className="text-4xl font-bold text-primary text-center mb-8">
