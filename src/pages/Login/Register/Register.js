@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  useAuthState,
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
@@ -18,13 +19,14 @@ const Register = () => {
     reset,
   } = useForm();
   const [displayName, setDisplayName] = useState("");
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, rUser, rLoading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [updateProfile, updating, upError] = useUpdateProfile(auth);
+  const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const [token] = useToken(user);
 
-  if (loading || updating) {
+  if (loading || updating || rLoading) {
     return <Loading></Loading>;
   }
   if (token) {

@@ -13,6 +13,7 @@ import ResetPassword from "./pages/Login/ResetPassword/ResetPassword";
 import AddReview from "./pages/AddReview/AddReview";
 import Dashboard from "./pages/Dashboard/Dashboard/Dashboard";
 import MyProfile from "./pages/Dashboard/MyProfile/MyProfile";
+import Purchase from "./pages/Purchase/Purchase";
 
 function App() {
   return (
@@ -32,7 +33,14 @@ function App() {
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="addReview" element={<AddReview></AddReview>}></Route>
         </Route>
-
+        <Route
+          path="purchase/:id"
+          element={
+            <RequireAuth>
+              <Purchase></Purchase>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="register" element={<Register></Register>}></Route>
         <Route

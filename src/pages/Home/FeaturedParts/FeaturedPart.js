@@ -1,7 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import useSingleParts from "../../../hooks/useSingleParts";
 
 const FeaturedPart = ({ part }) => {
-  const { name, price, minOrder, quantity, description, img } = part;
+  const { _id, name, price, minOrder, quantity, description, img } = part;
+  const navigate = useNavigate();
+
+  const handlePurchase = (_id) => {
+    navigate(`/purchase/${_id}`);
+    fetch(`http://localhost:5000/parts/${_id}`)
+      .then((res) => res.json())
+      .then((data) => localStorage.setItem(data._id, data.minOrder));
+  };
   return (
     <div className="card card-compact w-full shadow-xl border bg-white">
       <figure className="relative">
@@ -24,7 +34,12 @@ const FeaturedPart = ({ part }) => {
         </div>
         <p className="my-3">{description}</p>
         <div className="card-actions justify-center pt-3">
-          <button className="btn btn-primary w-full">Buy Now</button>
+          <button
+            onClick={() => handlePurchase(_id)}
+            className="btn btn-primary w-full"
+          >
+            Buy Now
+          </button>
         </div>
       </div>
     </div>

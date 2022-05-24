@@ -1,13 +1,11 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
-import Loading from "../../shared/Loading/Loading";
 
 const MyProfile = () => {
-  const [user, loading] = useAuthState(auth);
-  if (loading) {
-    return <Loading></Loading>;
-  }
+  const [user] = useAuthState(auth);
+
   const updateProfile = (e) => {
     e.preventDefault();
     const education = e.target.education.value;
@@ -20,9 +18,24 @@ const MyProfile = () => {
       phone,
       linkedin,
     };
+    fetch(`http://localhost:5000/profile/${user.email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(profile),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount || data.upsertedCount) {
+          toast.success("profile updated successfully!");
+          e.target.reset();
+        }
+      });
   };
   return (
-    <div>
+    <section>
       <h3 className="text-2xl font-bold">
         Welcome Mr. {user?.displayName.toUpperCase()}
       </h3>
@@ -96,7 +109,7 @@ const MyProfile = () => {
           className="btn btn-primary mt-5"
         />
       </form>
-    </div>
+    </section>
   );
 };
 
