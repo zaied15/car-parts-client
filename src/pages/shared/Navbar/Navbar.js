@@ -77,12 +77,14 @@ const Navbar = () => {
           <Link to="/" className="btn btn-ghost normal-case text-xl">
             <img src={logo} alt="Carros Logo" />
           </Link>
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-accent drawer-button lg:hidden"
-          >
-            Go Dashboard
-          </label>
+          {user && (
+            <label
+              htmlFor="my-drawer-2"
+              className="btn btn-accent drawer-button lg:hidden"
+            >
+              Go Dashboard
+            </label>
+          )}
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal p-0">{menuItem}</ul>

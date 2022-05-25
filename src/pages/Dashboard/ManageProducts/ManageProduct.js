@@ -1,7 +1,8 @@
 import React from "react";
 
-const ManageProduct = ({ product, index }) => {
-  const { name, description, quantity, minOrder, price, img } = product;
+const ManageProduct = ({ product, index, setPartsToModify }) => {
+  const { name, quantity, minOrder, price, img } = product;
+
   return (
     <tr>
       <th>{index + 1}.</th>
@@ -13,7 +14,13 @@ const ManageProduct = ({ product, index }) => {
         <img src={img} alt="" className="w-24 rounded" />
       </td>
       <td>
-        <button className="btn btn-danger">Delete</button>
+        <label
+          onClick={() => setPartsToModify(product)}
+          htmlFor="delete-product"
+          className="btn btn-danger"
+        >
+          Delete
+        </label>
       </td>
     </tr>
   );

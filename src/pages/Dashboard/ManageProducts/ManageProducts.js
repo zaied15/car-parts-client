@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "../../shared/Loading/Loading";
+import DeleteModal from "./DeleteModal";
 import ManageProduct from "./ManageProduct";
 
 const ManageProducts = () => {
+  const [partsToModify, setPartsToModify] = useState([]);
   const {
     data: products,
     isLoading,
@@ -41,10 +43,20 @@ const ManageProducts = () => {
                 key={product._id}
                 product={product}
                 index={index}
+                setPartsToModify={setPartsToModify}
               ></ManageProduct>
             ))}
           </tbody>
         </table>
+      </div>
+      <div>
+        {partsToModify && (
+          <DeleteModal
+            partsToModify={partsToModify}
+            refetch={refetch}
+            setPartsToModify={setPartsToModify}
+          ></DeleteModal>
+        )}
       </div>
     </section>
   );
