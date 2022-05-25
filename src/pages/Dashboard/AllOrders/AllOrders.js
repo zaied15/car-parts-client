@@ -9,7 +9,7 @@ const AllOrders = () => {
     isLoading,
     refetch,
   } = useQuery("orders", () =>
-    fetch(`http://localhost:5000/order`, {
+    fetch(`http://localhost:5000/orders`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

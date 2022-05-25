@@ -5,8 +5,13 @@ const useSingleParts = (id) => {
     data: singleParts,
     isLoading,
     refetch,
-  } = useQuery("singleParts", () =>
-    fetch(`http://localhost:5000/parts/${id}`).then((res) => res.json())
+  } = useQuery(["singleParts", id], () =>
+    fetch(`http://localhost:5000/parts/${id}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => res.json())
   );
   return { singleParts, isLoading, refetch };
 };

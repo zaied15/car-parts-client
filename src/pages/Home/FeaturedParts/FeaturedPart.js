@@ -1,16 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import useSingleParts from "../../../hooks/useSingleParts";
 
 const FeaturedPart = ({ part }) => {
   const { _id, name, price, minOrder, quantity, description, img } = part;
   const navigate = useNavigate();
 
   const handlePurchase = (_id) => {
+    localStorage.setItem(_id, minOrder);
     navigate(`/purchase/${_id}`);
-    fetch(`http://localhost:5000/parts/${_id}`)
-      .then((res) => res.json())
-      .then((data) => localStorage.setItem(data._id, data.minOrder));
+    // fetch(`http://localhost:5000/parts/${_id}`, {
+    //   method: "GET",
+    //   headers: {
+    //     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => localStorage.setItem(data._id, data.minOrder));
   };
   return (
     <div className="card card-compact w-full shadow-xl border bg-white">

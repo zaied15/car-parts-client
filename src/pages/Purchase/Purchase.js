@@ -198,7 +198,9 @@ const Purchase = () => {
           <br />
           <p className="text-2xl font-bold mt-10">
             Total Price:{" "}
-            <span className="text-error">${quantity * singleParts.price}</span>
+            <span className="text-error">
+              ${parseInt(quantity) * parseFloat(singleParts.price)}
+            </span>
           </p>
         </div>
       </div>

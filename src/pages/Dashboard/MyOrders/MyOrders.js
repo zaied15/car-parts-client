@@ -25,8 +25,8 @@ const MyOrders = () => {
   return (
     <section>
       <h3 className="text-2xl font-bold">My Order List</h3>
-      <div class="overflow-x-auto mt-10">
-        <table class="table table-zebra w-full">
+      <div className="overflow-x-auto mt-10">
+        <table className="table table-zebra w-full">
           <thead>
             <tr>
               <th>Sl.</th>

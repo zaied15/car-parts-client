@@ -26,7 +26,7 @@ const DeleteModal = ({ partsToModify, refetch, setPartsToModify }) => {
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold">
+          <h3 className="text-lg font-bold mb-5">
             Are You sure to delete this product?
           </h3>
           <button onClick={() => deleteProduct(_id)} className="btn btn-danger">
