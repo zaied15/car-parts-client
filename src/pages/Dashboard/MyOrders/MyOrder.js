@@ -8,7 +8,7 @@ const MyOrder = ({ order, index }) => {
       <th>{index + 1}.</th>
       <td>{partsName}</td>
       <td>{quantity}</td>
-      <td>{price}</td>
+      <td>${price}</td>
       <td>
         <Link to={`/dashboard/payment/${_id}`} className="btn btn-success mr-5">
           Make Pay

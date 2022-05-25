@@ -1,7 +1,14 @@
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import Loading from "../../pages/shared/Loading/Loading";
+import CheckoutForm from "./CheckoutForm";
+
+const stripePromise = loadStripe(
+  "pk_test_51L3EJ5JAf08m5hpMFUdj564JrpeWCGqHxboboEC2yx62xmB3ZzgtyExg8EzZS80sHVsJHgLKWPkJyos1zBN8q7A200sYbkEr9d"
+);
 
 const MakePayment = () => {
   const { orderId } = useParams();
@@ -20,46 +27,62 @@ const MakePayment = () => {
   }
   return (
     <section>
-      <div class="card w-96 bg-base-100 shadow-xl">
-        <div class="card-body">
-          <h2 class="card-title">Your Details:</h2>
-          <p>
-            Name: <span className="text-error">{order.name}</span>
-          </p>
-          <p>
-            Email: <span className="text-error">{order.email}</span>
-          </p>
-          <p>
-            <span className="text-error">
-              Shipping Address: {order.address}
-            </span>
-          </p>
-          <p>
-            Country: <span className="text-error">{order.country}</span>
-          </p>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="card max-w-lg bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title text-xl text-primary font-bold">
+              Shipping Details:
+            </h2>
+            <div className="font-bold">
+              <p>
+                Name: <span className="text-error">{order.name}</span>
+              </p>
+              <p>
+                Email: <span className="text-error">{order.email}</span>
+              </p>
+              <p>
+                Shipping Address:
+                <span className="text-error"> {order.address}</span>
+              </p>
+              <p>
+                Country: <span className="text-error">{order.country}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="card max-w-lg bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title text-xl text-primary font-bold">
+              Order Details:
+            </h2>
+            <div className="font-bold">
+              <p>
+                Parts Name:{" "}
+                <span className="text-error">{order.partsName}</span>
+              </p>
+              <p>
+                Quantity: <span className="text-error">{order.quantity}</span>
+              </p>
+              <p>
+                Total Price:
+                <span className="text-error"> ${order.price}</span>
+              </p>
+              <p>
+                Country: <span className="text-error">{order.country}</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="overflow-x-auto mt-10">
-        <table className="table table-zebra w-full">
-          <thead>
-            <tr>
-              <th>Parts Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{order?.partsName}</td>
-              <td>{order?.quantity}</td>
-              <td>{order?.price}</td>
-              <td>
-                <button className="btn btn-danger">Confirm Payment</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+
+      <div className="mt-10">
+        <div className="card max-w-lg bg-base-100 shadow-xl mx-auto">
+          <div className="card-body">
+            <Elements stripe={stripePromise}>
+              <CheckoutForm order={order} />
+            </Elements>
+          </div>
+        </div>
       </div>
     </section>
   );
