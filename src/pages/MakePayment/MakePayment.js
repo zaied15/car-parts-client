@@ -15,7 +15,7 @@ const MakePayment = () => {
   const { data: order, isLoading } = useQuery(
     ["orderToMakePayment", orderId],
     () =>
-      fetch(`http://localhost:5000/order/${orderId}`, {
+      fetch(`https://pitstop-parts-server.herokuapp.com/order/${orderId}`, {
         method: "GET",
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,

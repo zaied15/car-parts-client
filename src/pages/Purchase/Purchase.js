@@ -39,7 +39,7 @@ const Purchase = () => {
     };
     axios({
       method: "POST",
-      url: "http://localhost:5000/order",
+      url: "https://pitstop-parts-server.herokuapp.com/order",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -81,24 +81,6 @@ const Purchase = () => {
 
   return (
     <section className="bg-base-100 py-10">
-      {/* <h3 className="text-xl font-bold">
-        You are almost near to order the parts:{" "}
-        <span className="text-primary text-2xl">{singleParts.name}</span>
-      </h3>
-      <div className="my-5 text-left w-3/4 mx-auto text-xl">
-        <p>
-          <span className="font-bold text-primary">Parts Details: </span>
-          <span className="text-lg">{singleParts.description}</span>
-        </p>
-        <p>
-          <span className="font-bold text-primary">In Stock:</span>{" "}
-          {singleParts.quantity}
-        </p>
-        <p>
-          <span className="font-bold text-primary">Min. Order:</span>{" "}
-          {singleParts.minOrder}
-        </p>
-      </div> */}
       <div>
         <div className="hero bg-base-100 mb-5 mx-auto">
           <div className="hero-content flex-col lg:flex-row border-primary border rounded">

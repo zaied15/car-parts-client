@@ -4,7 +4,7 @@ import React from "react";
 const Order = ({ order, index, setOrderDeleteAdmin, refetch }) => {
   const { _id, partsName, quantity, price, name, paid } = order;
   const shippingStatus = (id) => {
-    axios(`http://localhost:5000/shippingStatus/${id}`, {
+    axios(`https://pitstop-parts-server.herokuapp.com/shippingStatus/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

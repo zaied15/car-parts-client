@@ -21,7 +21,7 @@ const AddProduct = () => {
     };
     axios({
       method: "POST",
-      url: "http://localhost:5000/parts",
+      url: "https://pitstop-parts-server.herokuapp.com/parts",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

@@ -20,7 +20,7 @@ const MyProfile = () => {
       phone,
       linkedin,
     };
-    fetch(`http://localhost:5000/profile/${user.email}`, {
+    fetch(`https://pitstop-parts-server.herokuapp.com/profile/${user.email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

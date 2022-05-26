@@ -5,7 +5,7 @@ const DeleteMyOrder = ({ myOrder, refetch, setMyOrderToDelete }) => {
   const { _id } = myOrder;
   const deleteMyOrder = (id) => {
     axios
-      .delete(`http://localhost:5000/myOrder/${id}`, {
+      .delete(`https://pitstop-parts-server.herokuapp.com/myOrder/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

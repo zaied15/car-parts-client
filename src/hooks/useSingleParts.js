@@ -6,7 +6,7 @@ const useSingleParts = (id) => {
     isLoading,
     refetch,
   } = useQuery(["singleParts", id], () =>
-    fetch(`http://localhost:5000/parts/${id}`, {
+    fetch(`https://pitstop-parts-server.herokuapp.com/parts/${id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

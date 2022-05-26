@@ -5,7 +5,7 @@ const DeleteModal = ({ partsToModify, refetch, setPartsToModify }) => {
   const { _id } = partsToModify;
   const deleteProduct = (_id) => {
     axios
-      .delete(`http://localhost:5000/parts/${_id}`, {
+      .delete(`https://pitstop-parts-server.herokuapp.com/parts/${_id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

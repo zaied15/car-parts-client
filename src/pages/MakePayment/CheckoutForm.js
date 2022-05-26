@@ -13,7 +13,7 @@ const CheckoutForm = ({ order }) => {
   const { _id, price, email, address, name, phone, partsName } = order;
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://pitstop-parts-server.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -74,7 +74,7 @@ const CheckoutForm = ({ order }) => {
         name: partsName,
         transactionId: paymentIntent.id,
       };
-      fetch(`http://localhost:5000/paidOrder/${_id}`, {
+      fetch(`https://pitstop-parts-server.herokuapp.com/paidOrder/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

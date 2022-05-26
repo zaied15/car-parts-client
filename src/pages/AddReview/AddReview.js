@@ -16,7 +16,7 @@ const AddReview = () => {
       rating: rating,
     };
 
-    fetch("http://localhost:5000/review", {
+    fetch("https://pitstop-parts-server.herokuapp.com/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -6,7 +6,7 @@ const useAdmin = (user) => {
   const [loadAdmin, setLoadAdmin] = useState(true);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/admin/${user?.email}`, {
+      .get(`https://pitstop-parts-server.herokuapp.com/admin/${user?.email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

@@ -9,11 +9,14 @@ const DeleteOrdersAdmin = ({
   const { _id } = orderDeleteAdmin;
   const deleteProductAdmin = (id) => {
     axios
-      .delete(`http://localhost:5000/adminOrderDelete/${id}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
+      .delete(
+        `https://pitstop-parts-server.herokuapp.com/adminOrderDelete/${id}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
       .then((res) => {
         setOrderDeleteAdmin(null);
         refetch();

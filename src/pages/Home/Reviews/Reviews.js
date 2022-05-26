@@ -9,7 +9,9 @@ const Reviews = () => {
     isLoading,
     refetch,
   } = useQuery("review", () =>
-    fetch(`http://localhost:5000/review`).then((res) => res.json())
+    fetch(`https://pitstop-parts-server.herokuapp.com/review`).then((res) =>
+      res.json()
+    )
   );
   if (isLoading) {
     return <Loading></Loading>;

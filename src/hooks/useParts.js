@@ -5,7 +5,7 @@ const useParts = () => {
   // const [parts, setParts] = useState([]);
   // const [partsLoading, setPartsLoading] = useState(true);
   // useEffect(() => {
-  //   fetch("http://localhost:5000/parts")
+  //   fetch("https://pitstop-parts-server.herokuapp.com/parts")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setParts(data);
@@ -18,7 +18,9 @@ const useParts = () => {
     isLoading,
     refetch,
   } = useQuery("parts", () =>
-    fetch("http://localhost:5000/parts").then((res) => res.json())
+    fetch("https://pitstop-parts-server.herokuapp.com/parts").then((res) =>
+      res.json()
+    )
   );
   return { parts, isLoading, refetch };
 };

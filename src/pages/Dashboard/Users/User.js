@@ -6,7 +6,7 @@ const User = ({ user, index, refetch }) => {
   const makeAdmin = (email) => {
     axios({
       method: "PATCH",
-      url: `http://localhost:5000/admin/${email}`,
+      url: `https://pitstop-parts-server.herokuapp.com/admin/${email}`,
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },

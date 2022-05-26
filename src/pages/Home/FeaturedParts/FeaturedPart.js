@@ -8,7 +8,7 @@ const FeaturedPart = ({ part }) => {
   const handlePurchase = (_id) => {
     localStorage.setItem(_id, minOrder);
     navigate(`/purchase/${_id}`);
-    // fetch(`http://localhost:5000/parts/${_id}`, {
+    // fetch(`https://pitstop-parts-server.herokuapp.com/parts/${_id}`, {
     //   method: "GET",
     //   headers: {
     //     authorization: `Bearer ${localStorage.getItem("accessToken")}`,
