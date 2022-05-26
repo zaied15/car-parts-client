@@ -12,7 +12,7 @@ const User = ({ user, index, refetch }) => {
       },
     }).then((res) => {
       refetch();
-      console.log(res);
+      console.log("success");
     });
   };
   return (

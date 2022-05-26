@@ -13,7 +13,7 @@ const DeleteMyOrder = ({ myOrder, refetch, setMyOrderToDelete }) => {
       .then((res) => {
         setMyOrderToDelete(null);
         refetch();
-        console.log(res);
+        console.log('success');
       });
   };
   return (
