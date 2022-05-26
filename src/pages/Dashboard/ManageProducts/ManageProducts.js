@@ -23,7 +23,7 @@ const ManageProducts = () => {
   }
   return (
     <section>
-      <h3 className="text-2xl font-bold">My Order List</h3>
+      <h3 className="text-2xl font-bold text-primary">ALL PRODUCTS</h3>
       <div className="overflow-x-auto mt-10">
         <table className="table table-zebra w-full">
           <thead>
@@ -52,6 +52,7 @@ const ManageProducts = () => {
       <div>
         {partsToModify && (
           <DeleteModal
+            key={partsToModify._id}
             partsToModify={partsToModify}
             refetch={refetch}
             setPartsToModify={setPartsToModify}

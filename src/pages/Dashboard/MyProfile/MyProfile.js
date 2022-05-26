@@ -8,11 +8,13 @@ const MyProfile = () => {
 
   const updateProfile = (e) => {
     e.preventDefault();
+    const name = user.displayName;
     const education = e.target.education.value;
     const location = e.target.location.value;
     const phone = e.target.phone.value;
     const linkedin = e.target.linkedin.value;
     const profile = {
+      name,
       education,
       location,
       phone,
@@ -37,7 +39,10 @@ const MyProfile = () => {
   return (
     <section>
       <h3 className="text-2xl font-bold">
-        Welcome Mr. {user?.displayName.toUpperCase()}
+        Welcome,{" "}
+        <span className="text-primary">
+          Mr. {user?.displayName.toUpperCase()}
+        </span>
       </h3>
       <form
         onSubmit={updateProfile}
@@ -94,7 +99,7 @@ const MyProfile = () => {
         />
         <br />
         <label>
-          <span className="label-text font-bold">LinkedIn</span>
+          <span className="label-text font-bold">LinkedIn Profile</span>
         </label>
         <input
           type="text"

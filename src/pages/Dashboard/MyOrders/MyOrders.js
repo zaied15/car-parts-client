@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import auth from "../../../firebase.init";
 import Loading from "../../shared/Loading/Loading";
+import DeleteMyOrder from "./DeleteMyOrder";
 import MyOrder from "./MyOrder";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
+  const [myOrderToDelete, setMyOrderToDelete] = useState([]);
   const {
     data: orders,
     isLoading,
@@ -33,16 +35,30 @@ const MyOrders = () => {
               <th>Parts Name</th>
               <th>Quantity</th>
               <th>Price</th>
+              <th>Transaction Id</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {orders.map((order, index) => (
-              <MyOrder key={order._id} order={order} index={index}></MyOrder>
+              <MyOrder
+                key={order._id}
+                order={order}
+                index={index}
+                setMyOrderToDelete={setMyOrderToDelete}
+              ></MyOrder>
             ))}
           </tbody>
         </table>
       </div>
+      {myOrderToDelete && (
+        <DeleteMyOrder
+          key={myOrderToDelete._id}
+          myOrder={myOrderToDelete}
+          refetch={refetch}
+          setMyOrderToDelete={setMyOrderToDelete}
+        ></DeleteMyOrder>
+      )}
     </section>
   );
 };

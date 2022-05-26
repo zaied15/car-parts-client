@@ -22,22 +22,34 @@ const Navbar = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
+      {user && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
       <li>
         <Link to="/blog">Blog</Link>
+      </li>
+      <li>
+        <Link to="/portfolio">My Portfolio</Link>
       </li>
       {!user ? (
         <li>
           <Link to="/login">Login</Link>
         </li>
       ) : (
-        <li>
-          <button onClick={logout} className="btn">
-            Logout
-          </button>
-        </li>
+        <>
+          <li>
+            <button className="btn btn-info text-white mx-2">
+              {user?.displayName}
+            </button>
+          </li>
+          <li>
+            <button onClick={logout} className="btn btn-active">
+              Logout
+            </button>
+          </li>
+        </>
       )}
       {!user && (
         <li>
@@ -80,9 +92,9 @@ const Navbar = () => {
           {user && (
             <label
               htmlFor="my-drawer-2"
-              className="btn btn-accent drawer-button lg:hidden"
+              className="btn btn-accent drawer-button ml-5 lg:hidden"
             >
-              Go Dashboard
+              Dashboard
             </label>
           )}
         </div>

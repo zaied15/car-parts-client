@@ -14,15 +14,13 @@ const Reviews = () => {
     return <Loading></Loading>;
   }
 
-  const reverseReviews = reviews.map((review) => review).reverse();
-
   return (
     <section className="pt-10">
       <h3 className="text-4xl font-bold text-primary text-center my-10">
         What Our Clients Says
       </h3>
       <div className="carousel w-full">
-        {reverseReviews.slice(0, 3).map((reviewItem, index) => (
+        {reviews.map((reviewItem, index) => (
           <ReviewItem
             key={reviewItem._id}
             reviewItem={reviewItem}

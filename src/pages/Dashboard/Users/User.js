@@ -18,7 +18,6 @@ const User = ({ user, index, refetch }) => {
   return (
     <tr>
       <th>{index + 1}.</th>
-      <td>{name}</td>
       <td>{email}</td>
       <td className="font-bold">{role ? "Admin" : "Subscriber"}</td>
       <td>

@@ -7,9 +7,9 @@ const AddReview = () => {
   const [user] = useAuthState(auth);
   const addReviews = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const reviewText = e.target.review.value;
-    const rating = e.target.rating.value;
+    const name = e.target.name.defaultValue;
+    const reviewText = e.target.review.defaultValue;
+    const rating = e.target.rating.defaultValue;
     const review = {
       name: name,
       review: reviewText,
@@ -40,7 +40,7 @@ const AddReview = () => {
           <input
             type="text"
             name="name"
-            value={user?.displayName || ""}
+            defaultValue={user?.displayName || ""}
             className="input input-bordered w-full max-w-lg"
           />
           <br />
@@ -59,16 +59,16 @@ const AddReview = () => {
             <option disabled selected>
               Give a rating
             </option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option defaultValue="1">1</option>
+            <option defaultValue="2">2</option>
+            <option defaultValue="3">3</option>
+            <option defaultValue="4">4</option>
+            <option defaultValue="5">5</option>
           </select>
           <br />
           <input
             type="submit"
-            value="Add Review"
+            defaultValue="Add Review"
             className="btn btn-bordered w-full max-w-lg my-3"
           />
         </form>

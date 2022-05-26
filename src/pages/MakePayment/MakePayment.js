@@ -78,6 +78,9 @@ const MakePayment = () => {
       <div className="mt-10">
         <div className="card max-w-lg bg-base-100 shadow-xl mx-auto">
           <div className="card-body">
+            <h2 className="card-title text-xl text-primary font-bold mb-5">
+              Payment Details:
+            </h2>
             <Elements stripe={stripePromise}>
               <CheckoutForm order={order} />
             </Elements>

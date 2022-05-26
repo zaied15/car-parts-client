@@ -22,6 +22,7 @@ import RequireAdmin from "./pages/Login/RequireAuth/RequireAdmin";
 import Users from "./pages/Dashboard/Users/Users";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import MakePayment from "./pages/MakePayment/MakePayment";
+import MyPortfolio from "./pages/MyPortfolio/MyPortfolio";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="blog" element={<Blog></Blog>}></Route>
+        <Route path="portfolio" element={<MyPortfolio></MyPortfolio>}></Route>
         <Route
           path="dashboard"
           element={

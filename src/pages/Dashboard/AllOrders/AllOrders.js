@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "../../shared/Loading/Loading";
+import DeleteOrdersAdmin from "./DeleteOrdersAdmin";
 import Order from "./Order";
 
 const AllOrders = () => {
+  const [orderDeleteAdmin, setOrderDeleteAdmin] = useState([]);
   const {
     data: orders,
     isLoading,
@@ -21,7 +23,7 @@ const AllOrders = () => {
   }
   return (
     <section>
-      <h3 className="text-2xl font-bold">My Order List</h3>
+      <h3 className="text-2xl font-bold text-primary">ALL ORDERS</h3>
       <div className="overflow-x-auto mt-10">
         <table className="table table-zebra w-full">
           <thead>
@@ -36,11 +38,25 @@ const AllOrders = () => {
           </thead>
           <tbody>
             {orders.map((order, index) => (
-              <Order key={order._id} order={order} index={index}></Order>
+              <Order
+                key={order._id}
+                order={order}
+                index={index}
+                refetch={refetch}
+                setOrderDeleteAdmin={setOrderDeleteAdmin}
+              ></Order>
             ))}
           </tbody>
         </table>
       </div>
+      {orderDeleteAdmin && (
+        <DeleteOrdersAdmin
+          key={orderDeleteAdmin._id}
+          orderDeleteAdmin={orderDeleteAdmin}
+          refetch={refetch}
+          setOrderDeleteAdmin={setOrderDeleteAdmin}
+        ></DeleteOrdersAdmin>
+      )}
     </section>
   );
 };

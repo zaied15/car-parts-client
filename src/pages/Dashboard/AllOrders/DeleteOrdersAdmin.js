@@ -1,27 +1,31 @@
-import React from "react";
 import axios from "axios";
+import React from "react";
 
-const DeleteModal = ({ partsToModify, refetch, setPartsToModify }) => {
-  const { _id } = partsToModify;
-  const deleteProduct = (_id) => {
+const DeleteOrdersAdmin = ({
+  orderDeleteAdmin,
+  refetch,
+  setOrderDeleteAdmin,
+}) => {
+  const { _id } = orderDeleteAdmin;
+  const deleteProductAdmin = (id) => {
     axios
-      .delete(`http://localhost:5000/parts/${_id}`, {
+      .delete(`http://localhost:5000/adminOrderDelete/${id}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
       .then((res) => {
-        setPartsToModify(null);
+        setOrderDeleteAdmin(null);
         refetch();
       });
   };
   return (
     <div>
-      <input type="checkbox" id="delete-product" className="modal-toggle" />
+      <input type="checkbox" id="delete-order-admin" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label
-            htmlFor="delete-product"
+            htmlFor="delete-order-admin"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
@@ -29,8 +33,11 @@ const DeleteModal = ({ partsToModify, refetch, setPartsToModify }) => {
           <h3 className="text-lg font-bold mb-5">
             Are You sure to delete this product?
           </h3>
-          <button onClick={() => deleteProduct(_id)} className="btn btn-danger">
-            Delete
+          <button
+            onClick={() => deleteProductAdmin(_id)}
+            className="btn btn-danger"
+          >
+            Yes, Delete
           </button>
         </div>
       </div>
@@ -38,4 +45,4 @@ const DeleteModal = ({ partsToModify, refetch, setPartsToModify }) => {
   );
 };
 
-export default DeleteModal;
+export default DeleteOrdersAdmin;

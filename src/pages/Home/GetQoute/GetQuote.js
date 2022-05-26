@@ -30,14 +30,7 @@ const GetQuote = () => {
               type="email"
               placeholder="Your Email"
               className="input input-bordered input-error w-full max-w-lg my-5"
-              {...register(
-                "email",
-                { required: true },
-                {
-                  pattern:
-                    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-                }
-              )}
+              {...register("email", { required: true })}
             />
             <p className="text-primary">
               {errors.email && <span>Email is required</span>}
@@ -66,7 +59,7 @@ const GetQuote = () => {
             <input
               type="submit"
               value="Get Quote"
-              className="btn btn-primary"
+              className="btn btn-primary mb-5"
             />
           </form>
         </div>

@@ -80,8 +80,8 @@ const Purchase = () => {
   };
 
   return (
-    <section className="bg-base-100 pt-10 pb-5">
-      <h3 className="text-xl font-bold">
+    <section className="bg-base-100 py-10">
+      {/* <h3 className="text-xl font-bold">
         You are almost near to order the parts:{" "}
         <span className="text-primary text-2xl">{singleParts.name}</span>
       </h3>
@@ -98,6 +98,25 @@ const Purchase = () => {
           <span className="font-bold text-primary">Min. Order:</span>{" "}
           {singleParts.minOrder}
         </p>
+      </div> */}
+      <div>
+        <div className="hero bg-base-100 mb-5">
+          <div className="hero-content flex-col lg:flex-row border-primary border rounded">
+            <img src={singleParts.img} className="w-48 rounded-lg shadow-2xl" />
+            <div className="text-left ml-5">
+              <h1 className="text-2xl font-bold">{singleParts.name}</h1>
+              <p className="py-6">{singleParts.description}</p>
+              <p>
+                <span className="font-bold text-primary">In Stock:</span>{" "}
+                {singleParts.quantity}
+              </p>
+              <p>
+                <span className="font-bold text-primary">Min. Order:</span>{" "}
+                {singleParts.minOrder}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="lg:flex">
         <div className="w-full lg:w-1/2 text-left relative">

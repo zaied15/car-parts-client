@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 const CheckoutForm = ({ order }) => {
-  const [cardError, setCardError] = useState("");
   const stripe = useStripe();
   const elements = useElements();
   const [clientSecret, setClientSecret] = useState("");
+  const [cardError, setCardError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [transactionId, setTransactionId] = useState("");
 
-  const orderPrice = order.price;
+  const { _id, price, email, address, name, phone, partsName } = order;
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
@@ -16,7 +19,7 @@ const CheckoutForm = ({ order }) => {
         "content-type": "application/json",
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify({ price: orderPrice }),
+      body: JSON.stringify({ price: price }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -24,7 +27,7 @@ const CheckoutForm = ({ order }) => {
           setClientSecret(data.clientSecret);
         }
       });
-  }, [orderPrice]);
+  }, [price]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,16 +38,62 @@ const CheckoutForm = ({ order }) => {
     if (card === null) {
       return;
     }
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
     setCardError(error?.message || "");
+    setSuccess("");
+    setProcessing(true);
+
+    // Confirm card payment
+    const { paymentIntent, error: intentError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: name,
+            email: email,
+            address: address,
+            phone: phone,
+          },
+        },
+      });
+    if (intentError) {
+      setCardError(intentError?.message);
+      setProcessing(false);
+    } else {
+      setCardError("");
+      setTransactionId(paymentIntent.id);
+      setSuccess("Your payment has been received. Thank you.");
+
+      // Store payment in database
+      const payment = {
+        order: _id,
+        name: partsName,
+        transactionId: paymentIntent.id,
+      };
+      fetch(`http://localhost:5000/paidOrder/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(payment),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setProcessing(false);
+          console.log("success");
+        });
+    }
   };
   return (
     <>
       <form onSubmit={handleSubmit}>
         <CardElement
+          className="border p-5 border-success rounded"
           options={{
             style: {
               base: {
@@ -63,12 +112,18 @@ const CheckoutForm = ({ order }) => {
         <button
           type="submit"
           disabled={!stripe || !clientSecret}
-          className="btn btn-primary btn-sm mt-10"
+          className="btn btn-primary btn-sm mt-5"
         >
           Place Order
         </button>
       </form>
       {cardError && <p className="text-danger">{cardError}</p>}
+      {success && (
+        <div className="text-success font-bold">
+          <p>{success}</p>
+          <p className="text-orange-400">Your TrxId: {transactionId}</p>
+        </div>
+      )}
     </>
   );
 };
