@@ -47,6 +47,42 @@ const Blog = () => {
           prototype-capable language and its potentiality are relatively unique.
         </p>
       </div>
+      <div className="mt-5">
+        <h2 className="text-xl text-primary font-bold">
+          Q4. How will you implement a search to find products by name from an
+          array of object?
+        </h2>
+        <p>
+          {`
+            const arr = [ 
+              { id: 1, title: 'Apple', description: 'Description of post 1' }, 
+              { id: 2, title: 'Orange', description: 'Description of post 2' }, 
+              { id: 3, title: 'Guava', description: 'Description of post 3' }, 
+              { id: 4, title: 'Banana', description: 'Description of post 4' }
+            ];
+            `}
+          <br />
+          {`const searchText = 'Guava'`}
+          <br />
+          {`const searchResult = arr.find(product => post.title.toLowerCase() === searchText.toLowerCase()
+          });
+          `}
+        </p>
+      </div>
+      <div className="mt-5">
+        <h2 className="text-xl text-primary font-bold">
+          Q5. What is a unit test? Why should write unit tests?
+        </h2>
+        <p>
+          JavaScript Unit Testing or A unit test is an automated test of a unit
+          of source code. A unit test asserts if the unit's behavior matches
+          expectations. A unit is usually a line of code, function, or class.
+          <br />
+          It is then combined with HTML as an inline event handler and executed
+          in the browser to test if all functionalities are working as desired.
+          These unit tests are then organized in the test suite.
+        </p>
+      </div>
     </div>
   );
 };

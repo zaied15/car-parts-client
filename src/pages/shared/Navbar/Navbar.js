@@ -22,17 +22,17 @@ const Navbar = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
-      {user && (
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-      )}
       <li>
         <Link to="/blog">Blog</Link>
       </li>
       <li>
         <Link to="/portfolio">My Portfolio</Link>
       </li>
+      {user && (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      )}
       {!user ? (
         <li>
           <Link to="/login">Login</Link>
@@ -40,9 +40,9 @@ const Navbar = () => {
       ) : (
         <>
           <li>
-            <button className="btn btn-info text-white mx-2">
+            <Link to="/dashboard" className="btn btn-info text-white mx-2">
               {user?.displayName}
-            </button>
+            </Link>
           </li>
           <li>
             <button onClick={logout} className="btn btn-active">
