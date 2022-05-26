@@ -1,8 +1,13 @@
-# Getting Started with Create React App
+# [Pitstop Car Parts Dealer](https://car-parts-auth-a92ca.web.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Projects Features
 
-## Available Scripts
+- This site is designed to sell car parts
+- Firebase authentication is used for login and register
+- Stripe card payment method has been used to make payment
+- User and admin role are different
+- User can see details of his order
+- User can give review of a product
 
 In the project directory, you can run:
 

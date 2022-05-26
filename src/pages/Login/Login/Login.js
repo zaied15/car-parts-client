@@ -40,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <section className="my-20 height-adjust">
+    <section className="my-20 h-screen w-100">
       <h3 className="text-2xl font-bold">Please Login</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input

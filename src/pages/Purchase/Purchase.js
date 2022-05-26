@@ -100,9 +100,13 @@ const Purchase = () => {
         </p>
       </div> */}
       <div>
-        <div className="hero bg-base-100 mb-5">
+        <div className="hero bg-base-100 mb-5 mx-auto">
           <div className="hero-content flex-col lg:flex-row border-primary border rounded">
-            <img src={singleParts.img} className="w-48 rounded-lg shadow-2xl" />
+            <img
+              src={singleParts.img}
+              className="w-48 rounded-lg shadow-2xl"
+              alt=""
+            />
             <div className="text-left ml-5">
               <h1 className="text-2xl font-bold">{singleParts.name}</h1>
               <p className="py-6">{singleParts.description}</p>
@@ -173,7 +177,7 @@ const Purchase = () => {
               type="submit"
               value="Make Order"
               disabled={error}
-              className="btn btn-primary mt-5 absolute bottom-0 right-[-50px]"
+              className="btn btn-primary mt-5 absolute bottom-[-350px] right-0 lg:bottom-0 lg:right-[-50px]"
             />
           </form>
         </div>

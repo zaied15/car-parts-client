@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 import Loading from "../../shared/Loading/Loading";
 import ReviewItem from "./ReviewItem";
+import ReviewSliderNumber from "./ReviewSliderNumber";
 
 const Reviews = () => {
   const {
@@ -29,15 +30,12 @@ const Reviews = () => {
         ))}
       </div>
       <div className="flex justify-center w-full py-2 gap-2">
-        <a href="#item1" className="btn btn-xs">
-          1
-        </a>
-        <a href="#item2" className="btn btn-xs">
-          2
-        </a>
-        <a href="#item3" className="btn btn-xs">
-          3
-        </a>
+        {reviews.map((review, index) => (
+          <ReviewSliderNumber
+            key={review._id}
+            index={index}
+          ></ReviewSliderNumber>
+        ))}
       </div>
     </section>
   );
