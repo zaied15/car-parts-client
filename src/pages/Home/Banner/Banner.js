@@ -6,23 +6,23 @@ import slide2 from "../../../images/slider/slider2.jpg";
 const Banner = () => {
   return (
     <div
-      class="hero"
+      className="hero"
       style={{
         backgroundImage: `url(${slide2})`,
         height: "500px",
       }}
     >
-      <div class=""></div>
-      <div class="hero-content text-center">
-        <div class="max-w-md">
-          <h1 class="mb-5 text-4xl font-bold">
+      <div className=""></div>
+      <div className="hero-content text-center">
+        <div className="max-w-md">
+          <h1 className="mb-5 text-4xl font-bold">
             WE CAN FIND
             <br />
             SPARE PARTS OF
             <br />
             ANY CAR
           </h1>
-          <Link to="/blog" class="btn btn-primary">
+          <Link to="/blog" className="btn btn-primary">
             LEARN MORE
           </Link>
         </div>
